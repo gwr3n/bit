@@ -8,7 +8,7 @@
 
 `bit` is a Python CLI that translates natural-language shell instructions into Linux shell commands by calling a locally running OLLAMA model.
 
-## Installation
+## Quick Installation
 
 ```bash
 pip install bit-wrangler

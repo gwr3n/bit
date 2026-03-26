@@ -146,9 +146,13 @@ def _sanitize_command(command: str) -> str:
     # Disallow command-substitution/backtick syntax which can lead to
     # accidental execution of unintended commands when evaluated in a shell.
     if "`" in value:
-        raise OllamaError("Model output must not use backticks or command substitution.")
+        raise OllamaError(
+            "Model output must not use backticks or command substitution."
+        )
     if "$(" in value:
-        raise OllamaError("Model output must not use command-substitution syntax ($()).")
+        raise OllamaError(
+            "Model output must not use command-substitution syntax ($())."
+        )
 
     lines = [line.strip() for line in value.splitlines() if line.strip()]
     if len(lines) != 1:

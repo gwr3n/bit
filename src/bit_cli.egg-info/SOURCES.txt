@@ -5,6 +5,7 @@ src/bit/cli.py
 src/bit/config.py
 src/bit/ollama.py
 src/bit/shell.py
+src/bit/terminal.py
 src/bit/shell/bash_integration.sh
 src/bit_cli.egg-info/PKG-INFO
 src/bit_cli.egg-info/SOURCES.txt

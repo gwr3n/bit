@@ -27,6 +27,8 @@ $ bit create folder new_folder
 mkdir new_folder
 ```
 
+When `bit` is run from an interactive terminal that permits tty injection, it attempts to preload the generated command into the next shell prompt instead of only printing it. In non-interactive contexts, or when tty injection is unavailable, it falls back to stdout.
+
 ## Features
 
 - Translates free-form instructions into one shell command.
@@ -91,6 +93,12 @@ bit find large log files in current directory
 bit show disk usage for home directory
 ```
 
+Force plain stdout output even in an interactive shell:
+
+```bash
+bit --print-only create folder new_folder
+```
+
 Print Bash integration helper:
 
 ```bash
@@ -105,7 +113,7 @@ bit --help
 
 ## Bash Shell Integration
 
-A normal CLI process cannot directly replace the current interactive shell input buffer after it has already been invoked. Because of that, `bit` always prints the generated command to stdout, and Bash prompt insertion is handled through a readline widget.
+In a regular interactive terminal session, `bit` now tries to inject the generated command into the next prompt buffer directly. That depends on tty support for `TIOCSTI`, which may be unavailable or disabled on some systems. For environments where that mechanism is blocked, Bash integration is still available through a readline widget.
 
 To enable that widget in Bash:
 
@@ -136,5 +144,6 @@ python -m build
 - The tool asks the model for a single shell command, but model output is still untrusted text.
 - `bit` rejects obvious malformed multi-line and fenced responses, but it does not prove a generated command is safe.
 - Review generated commands before executing them.
-- Shell insertion into the current prompt requires shell-specific integration; it cannot be done by a standalone Python process alone.
+- Direct prompt insertion relies on terminal input injection support and may be blocked by system policy.
+- If direct insertion is unavailable, use the Bash integration helper or `--print-only`.
 - The default target is Linux shell syntax even if the tool is run elsewhere.

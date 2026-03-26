@@ -6,6 +6,7 @@ import sys
 from .config import Config, ConfigError, DEFAULT_HOST, load_config, save_config
 from .ollama import OllamaError, generate_command, list_models
 from .shell import get_bash_integration_script
+from .terminal import inject_command_into_prompt
 
 
 def main() -> int:
@@ -30,7 +31,8 @@ def main() -> int:
             instruction=instruction,
         )
         sanitized = _sanitize_command(command)
-        print(sanitized)
+        if args.print_only or not inject_command_into_prompt(sanitized):
+            print(sanitized)
         return 0
     except (ConfigError, OllamaError) as exc:
         print(f"bit: {exc}", file=sys.stderr)
@@ -62,6 +64,11 @@ def _build_parser() -> argparse.ArgumentParser:
         choices=["bash"],
         metavar="SHELL",
         help="print shell integration helper code for the selected shell",
+    )
+    parser.add_argument(
+        "--print-only",
+        action="store_true",
+        help="always print the generated command to stdout instead of trying interactive prompt insertion",
     )
     return parser
 

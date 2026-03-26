@@ -18,8 +18,11 @@ def main() -> int:
         if args.setup:
             return _run_setup()
 
-        if args.print_shell_integration:
-            return _print_shell_integration(args.print_shell_integration)
+        if args.activate:
+            return _print_shell_integration(args.activate, mode="activate")
+
+        if args.deactivate:
+            return _print_shell_integration(args.deactivate, mode="deactivate")
 
         instruction = " ".join(args.instruction).strip()
         if not instruction:
@@ -50,8 +53,8 @@ def _build_parser() -> argparse.ArgumentParser:
         ),
         epilog=(
             "Normal mode prints the generated command to stdout. "
-            "For shell widgets, run 'source <(bit --print-shell-integration bash)' in Bash or "
-            "'source <(bit --print-shell-integration zsh)' in Zsh."
+            "For shell widgets, run 'source <(bit --activate bash)' in Bash or "
+            "'source <(bit --activate zsh)' in Zsh. Use '--deactivate' the same way to unload integration."
         ),
     )
     parser.add_argument("instruction", nargs="*", help="natural-language instruction to translate")
@@ -61,10 +64,16 @@ def _build_parser() -> argparse.ArgumentParser:
         help="interactively select an installed OLLAMA model and save it to ~/.bit",
     )
     parser.add_argument(
-        "--print-shell-integration",
+        "--activate",
         choices=["bash", "zsh"],
         metavar="SHELL",
         help="print shell integration helper code for the selected shell",
+    )
+    parser.add_argument(
+        "--deactivate",
+        choices=["bash", "zsh"],
+        metavar="SHELL",
+        help="print shell deactivation helper code for the selected shell",
     )
     return parser
 
@@ -102,10 +111,10 @@ def _prompt_for_selection(option_count: int) -> int:
         print(f"Enter a number between 1 and {option_count}.", file=sys.stderr)
 
 
-def _print_shell_integration(shell_name: str) -> int:
+def _print_shell_integration(shell_name: str, *, mode: str) -> int:
     selected_shell = shell_name or _detect_shell_name()
     try:
-        print(get_shell_integration_script(selected_shell), end="")
+        print(get_shell_integration_script(selected_shell, mode=mode), end="")
     except ValueError as exc:
         raise ConfigError(str(exc)) from exc
     return 0

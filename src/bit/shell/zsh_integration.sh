@@ -5,7 +5,7 @@ function bit() {
   fi
 
   case "${1-}" in
-    ""|--help|-h|--setup|--print-shell-integration)
+    ""|--help|-h|--setup|--activate|--deactivate)
       command bit "$@"
       return $?
       ;;

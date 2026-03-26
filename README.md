@@ -78,13 +78,25 @@ bit show disk usage for home directory
 Print Bash integration helper:
 
 ```bash
-bit --print-shell-integration bash
+bit --activate bash
 ```
 
 Print Zsh integration helper:
 
 ```bash
-bit --print-shell-integration zsh
+bit --activate zsh
+```
+
+Print Bash deactivation helper:
+
+```bash
+bit --deactivate bash
+```
+
+Print Zsh deactivation helper:
+
+```bash
+bit --deactivate zsh
 ```
 
 Show help:
@@ -100,13 +112,25 @@ The standalone `bit` executable only prints commands. If you want generated comm
 To enable that widget in Bash:
 
 ```bash
-source <(bit --print-shell-integration bash)
+source <(bit --activate bash)
 ```
 
 To enable that widget in Zsh:
 
 ```bash
-source <(bit --print-shell-integration zsh)
+source <(bit --activate zsh)
+```
+
+To unload the integration in Bash:
+
+```bash
+source <(bit --deactivate bash)
+```
+
+To unload the integration in Zsh:
+
+```bash
+source <(bit --deactivate zsh)
 ```
 
 After sourcing the Zsh integration, you can also invoke `bit` directly as a shell function:
@@ -125,9 +149,9 @@ Then type a natural-language instruction directly at the shell prompt and press 
 
 Nothing is executed automatically. You can edit the generated command and then press Enter yourself.
 
-To load this automatically, add the matching `source <(bit --print-shell-integration ...)` line to your shell startup file.
+To load this automatically, add the matching `source <(bit --activate ...)` line to your shell startup file.
 
-In Zsh, sourcing the integration also defines a `bit` shell function that shadows the installed executable in that shell session. Administrative commands such as `bit --setup`, `bit --help`, and `bit --print-shell-integration zsh` still pass through to the real CLI.
+In Zsh, sourcing the integration also defines a `bit` shell function that shadows the installed executable in that shell session. Administrative commands such as `bit --setup`, `bit --help`, `bit --activate zsh`, and `bit --deactivate zsh` still pass through to the real CLI.
 
 ## Build
 

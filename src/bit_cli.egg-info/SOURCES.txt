@@ -5,7 +5,9 @@ src/bit/cli.py
 src/bit/config.py
 src/bit/ollama.py
 src/bit/shell.py
+src/bit/shell/bash_deactivation.sh
 src/bit/shell/bash_integration.sh
+src/bit/shell/zsh_deactivation.sh
 src/bit/shell/zsh_integration.sh
 src/bit_cli.egg-info/PKG-INFO
 src/bit_cli.egg-info/SOURCES.txt

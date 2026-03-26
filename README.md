@@ -15,7 +15,9 @@ $ bit create folder new_folder
 mkdir new_folder
 ```
 
-By default, `bit` prints the generated command to stdout. Staging a generated command into the current shell prompt is available through sourced shell integration for Bash or Zsh.
+By default, `bit` prints the generated command to stdout. 
+
+If you want `bit` to place the generated command into your current shell prompt for review, first enable the Bash or Zsh shell integration (this only has to be done once).
 
 Activate shell integration:
 

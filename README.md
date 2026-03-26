@@ -67,7 +67,7 @@ Build and install locally:
 
 ```bash
 python -m build
-python -m pip install dist/bit_wrangler-0.1.1-py3-none-any.whl
+python -m pip install dist/bit_wrangler-1.0.0-py3-none-any.whl
 ```
 
 Or install in editable mode while developing:

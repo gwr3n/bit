@@ -15,7 +15,26 @@ $ bit create folder new_folder
 mkdir new_folder
 ```
 
-By default, `bit` prints the generated command to stdout. Staging a generated command into the current shell prompt is available only through sourced shell integration for Bash or Zsh.
+By default, `bit` prints the generated command to stdout. Staging a generated command into the current shell prompt is available through sourced shell integration for Bash or Zsh.
+
+Activate shell integration:
+
+```bash
+# Bash
+source <(bit --activate bash)    # alternatively replace bash with zsh
+```
+
+Option 1 (using Ctrl-x Ctrl-b):
+```
+find large log files in current directory
+# press Ctrl-x Ctrl-b to replace the prompt with the generated command
+```
+
+Option 2 (using bit function):
+```
+bit find large log files in current directory
+# the generated command is staged into the prompt for review
+```
 
 ## Features
 

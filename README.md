@@ -1,6 +1,6 @@
 # bit
 
-[![Codecov](https://img.shields.io/codecov/c/gh/gwr3n/bit/main)](https://codecov.io/gh/gwr3n/bit) [![Python package](https://img.shields.io/github/actions/workflow/status/gwr3n/bit/.github%2Fworkflows%2Fpython-package.yml)](https://github.com/gwr3n/bit/actions/workflows/python-package.yml) [![Lint and type-check](https://img.shields.io/github/actions/workflow/status/gwr3n/bit/.github%2Fworkflows%2Flint-type.yml?branch=main&label=lint%20%2B%20type-check)](https://github.com/gwr3n/bit/actions/workflows/lint-type.yml) [![PyPI](https://img.shields.io/pypi/v/bit-cli)](https://pypi.org/project/bit-cli/) [![Python versions](https://img.shields.io/pypi/pyversions/bit-cli)](https://pypi.org/project/bit-cli/) [![License](https://img.shields.io/github/license/gwr3n/bit)](https://github.com/gwr3n/bit/blob/main/LICENSE) [![Downloads](https://static.pepy.tech/badge/bit-cli)](https://pepy.tech/project/bit-cli) [![Release](https://img.shields.io/github/v/release/gwr3n/bit)](https://github.com/gwr3n/bit/releases) [![Wheel](https://img.shields.io/pypi/wheel/bit-cli)](https://pypi.org/project/bit-cli/)
+[![Codecov](https://img.shields.io/codecov/c/gh/gwr3n/bit/main)](https://codecov.io/gh/gwr3n/bit) [![Python package](https://img.shields.io/github/actions/workflow/status/gwr3n/bit/.github%2Fworkflows%2Fpython-package.yml)](https://github.com/gwr3n/bit/actions/workflows/python-package.yml) [![Lint and type-check](https://img.shields.io/github/actions/workflow/status/gwr3n/bit/.github%2Fworkflows%2Flint-type.yml?branch=main&label=lint%20%2B%20type-check)](https://github.com/gwr3n/bit/actions/workflows/lint-type.yml) [![PyPI](https://img.shields.io/pypi/v/bit-wrangler)](https://pypi.org/project/bit-wrangler/) [![Python versions](https://img.shields.io/pypi/pyversions/bit-wrangler)](https://pypi.org/project/bit-wrangler/) [![License](https://img.shields.io/github/license/gwr3n/bit)](https://github.com/gwr3n/bit/blob/main/LICENSE) [![Downloads](https://static.pepy.tech/badge/bit-wrangler)](https://pepy.tech/project/bit-wrangler) [![Release](https://img.shields.io/github/v/release/gwr3n/bit)](https://github.com/gwr3n/bit/releases) [![Wheel](https://img.shields.io/pypi/wheel/bit-wrangler)](https://pypi.org/project/bit-wrangler/)
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000?logo=python)](https://github.com/psf/black) [![Ruff](https://img.shields.io/badge/lint-ruff-1f79ff?logo=python)](https://github.com/astral-sh/ruff) [![mypy](https://img.shields.io/badge/type--checked-mypy-blue?logo=python)](https://github.com/python/mypy)
 
@@ -65,7 +65,7 @@ Build and install locally:
 
 ```bash
 python -m build
-python -m pip install dist/bit_cli-0.1.0-py3-none-any.whl
+python -m pip install dist/bit_wrangler-0.1.1-py3-none-any.whl
 ```
 
 Or install in editable mode while developing:

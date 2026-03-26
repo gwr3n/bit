@@ -1,0 +1,25 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.venv/
+
+# Packaging and build artifacts
+build/
+dist/
+*.egg-info/
+
+# Tool caches and reports
+.coverage
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Editor files
+.DS_Store
+
+# VS Code workspace state
+.vscode/*
+!.vscode/settings.json

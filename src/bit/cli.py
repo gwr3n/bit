@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
+from pathlib import Path
 
 from .config import Config, ConfigError, DEFAULT_HOST, load_config, save_config
 from .ollama import OllamaError, generate_command, list_models
-from .shell import get_bash_integration_script
+from .shell import get_shell_integration_script
 from .terminal import inject_command_into_prompt
 
 
@@ -49,8 +51,9 @@ def _build_parser() -> argparse.ArgumentParser:
             "Translate natural-language shell instructions into a Linux command using a local OLLAMA model."
         ),
         epilog=(
-            "Normal mode prints the generated command to stdout. For prompt-buffer insertion in Bash, "
-            "run 'bit --print-shell-integration bash' and source the result."
+            "Normal mode prints the generated command to stdout or injects it into an interactive prompt. "
+            "For shell widgets, run 'source <(bit --print-shell-integration bash)' in Bash or "
+            "'source <(bit --print-shell-integration zsh)' in Zsh."
         ),
     )
     parser.add_argument("instruction", nargs="*", help="natural-language instruction to translate")
@@ -61,7 +64,7 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--print-shell-integration",
-        choices=["bash"],
+        choices=["bash", "zsh"],
         metavar="SHELL",
         help="print shell integration helper code for the selected shell",
     )
@@ -107,10 +110,21 @@ def _prompt_for_selection(option_count: int) -> int:
 
 
 def _print_shell_integration(shell_name: str) -> int:
-    if shell_name != "bash":
-        raise ConfigError(f"Unsupported shell integration target: {shell_name}")
-    print(get_bash_integration_script(), end="")
+    selected_shell = shell_name or _detect_shell_name()
+    try:
+        print(get_shell_integration_script(selected_shell), end="")
+    except ValueError as exc:
+        raise ConfigError(str(exc)) from exc
     return 0
+
+
+def _detect_shell_name() -> str:
+    shell_env = Path(sys.argv[0]).name
+    parent_shell = Path(os.environ.get("SHELL", "")).name
+    for candidate in (parent_shell, shell_env):
+        if candidate in {"bash", "zsh"}:
+            return candidate
+    return "bash"
 
 
 def _sanitize_command(command: str) -> str:

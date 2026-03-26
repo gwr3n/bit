@@ -1,9 +1,8 @@
 from __future__ import annotations
 
+import tomllib
 from dataclasses import dataclass
 from pathlib import Path
-import tomllib
-
 
 CONFIG_PATH = Path.home() / ".bit"
 DEFAULT_HOST = "http://127.0.0.1:11434"

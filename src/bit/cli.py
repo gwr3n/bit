@@ -5,7 +5,7 @@ import os
 import sys
 from pathlib import Path
 
-from .config import Config, ConfigError, DEFAULT_HOST, load_config, save_config
+from .config import DEFAULT_HOST, Config, ConfigError, load_config, save_config
 from .ollama import OllamaError, generate_command, list_models
 from .shell import get_shell_integration_script
 
@@ -49,15 +49,19 @@ def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="bit",
         description=(
-            "Translate natural-language shell instructions into a Linux command using a local OLLAMA model."
+            "Translate natural-language shell instructions into a Linux "
+            "command using a local OLLAMA model."
         ),
         epilog=(
             "Normal mode prints the generated command to stdout. "
             "For shell widgets, run 'source <(bit --activate bash)' in Bash or "
-            "'source <(bit --activate zsh)' in Zsh. Use '--deactivate' the same way to unload integration."
+            "'source <(bit --activate zsh)' in Zsh. "
+            "Use '--deactivate' the same way to unload integration."
         ),
     )
-    parser.add_argument("instruction", nargs="*", help="natural-language instruction to translate")
+    parser.add_argument(
+        "instruction", nargs="*", help="natural-language instruction to translate"
+    )
     parser.add_argument(
         "--setup",
         action="store_true",
@@ -82,7 +86,8 @@ def _run_setup() -> int:
     models = list_models(DEFAULT_HOST)
     if not models:
         raise OllamaError(
-            "No installed OLLAMA models were found. Pull a model first, for example 'ollama pull llama3.1:8b'."
+            "No installed OLLAMA models were found. Pull a model first, "
+            "for example 'ollama pull llama3.1:8b'."
         )
 
     print("Installed OLLAMA models:")
@@ -132,7 +137,9 @@ def _detect_shell_name() -> str:
 def _sanitize_command(command: str) -> str:
     value = command.strip()
     if value.startswith("```"):
-        raise OllamaError("Model output used Markdown fences instead of a raw shell command.")
+        raise OllamaError(
+            "Model output used Markdown fences instead of a raw shell command."
+        )
     if "\x00" in value:
         raise OllamaError("Model output contains invalid null bytes.")
 
@@ -141,7 +148,11 @@ def _sanitize_command(command: str) -> str:
         raise OllamaError("Model output must contain exactly one non-empty line.")
 
     sanitized = lines[0]
-    if sanitized.startswith(("'", '"')) and sanitized.endswith(("'", '"')) and len(sanitized) > 1:
+    if (
+        sanitized.startswith(("'", '"'))
+        and sanitized.endswith(("'", '"'))
+        and len(sanitized) > 1
+    ):
         raise OllamaError("Model output must be a command, not a quoted string.")
     return sanitized
 

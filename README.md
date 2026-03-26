@@ -43,6 +43,38 @@ python -m pip install -e .
 
 After installation, the `bit` command is available directly on the command line.
 
+## Development Tools
+
+Install the development dependencies:
+
+```bash
+python -m pip install -e ".[dev]"
+```
+
+Run the formatter:
+
+```bash
+black src tests
+```
+
+Run Ruff:
+
+```bash
+ruff check src tests
+```
+
+Run Flake8:
+
+```bash
+flake8 src tests
+```
+
+Run mypy:
+
+```bash
+mypy src
+```
+
 ## Initial Setup
 
 Run:

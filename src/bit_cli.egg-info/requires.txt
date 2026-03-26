@@ -1,0 +1,9 @@
+
+[dev]
+black
+ruff
+flake8
+mypy
+
+[test]
+pytest>=8.3

@@ -18,8 +18,12 @@ SYSTEM_PROMPT = (
 def list_models(host: str) -> list[str]:
     payload = _request_json(f"{host.rstrip('/')}/api/tags")
     models = payload.get("models", [])
+    if not isinstance(models, list):
+        raise OllamaError("OLLAMA returned an unexpected models payload.")
     result = []
     for entry in models:
+        if not isinstance(entry, dict):
+            continue
         name = str(entry.get("name", "")).strip()
         if name:
             result.append(name)
@@ -47,7 +51,9 @@ def generate_command(*, host: str, model: str, instruction: str) -> str:
     return response
 
 
-def _request_json(url: str, data: dict[str, object] | None = None, method: str = "GET") -> dict[str, object]:
+def _request_json(
+    url: str, data: dict[str, object] | None = None, method: str = "GET"
+) -> dict[str, object]:
     encoded = None
     headers = {"Accept": "application/json"}
     if data is not None:
@@ -61,7 +67,8 @@ def _request_json(url: str, data: dict[str, object] | None = None, method: str =
     except error.HTTPError as exc:
         message = exc.read().decode("utf-8", errors="replace")
         raise OllamaError(
-            f"OLLAMA request failed with HTTP {exc.code}: {message.strip() or exc.reason}"
+            "OLLAMA request failed with HTTP "
+            f"{exc.code}: {message.strip() or exc.reason}"
         ) from exc
     except error.URLError as exc:
         reason = getattr(exc, "reason", exc)

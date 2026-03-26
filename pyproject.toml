@@ -27,6 +27,10 @@ classifiers = [
 [project.scripts]
 bit = "bit.cli:main"
 
+[project.optional-dependencies]
+test = ["pytest>=8.3"]
+dev = ["black", "ruff", "flake8", "mypy"]
+
 [tool.setuptools]
 package-dir = { "" = "src" }
 include-package-data = true
@@ -36,3 +40,29 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 bit = ["shell/bash_integration.sh", "shell/bash_deactivation.sh", "shell/zsh_integration.sh", "shell/zsh_deactivation.sh"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.black]
+line-length = 88
+target-version = ["py311", "py312", "py313"]
+extend-exclude = '''
+/(venv)/
+'''
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+exclude = ["venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.mypy]
+python_version = "3.11"
+exclude = "(?:^|/)(venv)/"
+warn_unused_configs = true
+show_error_codes = true
+pretty = true

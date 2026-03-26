@@ -1,3 +1,21 @@
+function bit() {
+  if [[ ! -o interactive ]]; then
+    command bit "$@"
+    return $?
+  fi
+
+  case "${1-}" in
+    ""|--help|-h|--setup|--print-shell-integration|--print-only)
+      command bit "$@"
+      return $?
+      ;;
+  esac
+
+  local generated
+  generated="$(command bit --print-only "$@")" || return $?
+  print -z -- "$generated"
+}
+
 function __bit_widget() {
   local generated
 

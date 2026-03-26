@@ -8,7 +8,6 @@ from pathlib import Path
 from .config import Config, ConfigError, DEFAULT_HOST, load_config, save_config
 from .ollama import OllamaError, generate_command, list_models
 from .shell import get_shell_integration_script
-from .terminal import inject_command_into_prompt
 
 
 def main() -> int:
@@ -33,8 +32,7 @@ def main() -> int:
             instruction=instruction,
         )
         sanitized = _sanitize_command(command)
-        if args.print_only or not inject_command_into_prompt(sanitized):
-            print(sanitized)
+        print(sanitized)
         return 0
     except (ConfigError, OllamaError) as exc:
         print(f"bit: {exc}", file=sys.stderr)
@@ -51,7 +49,7 @@ def _build_parser() -> argparse.ArgumentParser:
             "Translate natural-language shell instructions into a Linux command using a local OLLAMA model."
         ),
         epilog=(
-            "Normal mode prints the generated command to stdout or injects it into an interactive prompt. "
+            "Normal mode prints the generated command to stdout. "
             "For shell widgets, run 'source <(bit --print-shell-integration bash)' in Bash or "
             "'source <(bit --print-shell-integration zsh)' in Zsh."
         ),

@@ -9,7 +9,7 @@ $ bit create folder new_folder
 mkdir new_folder
 ```
 
-When `bit` is run from an interactive terminal that permits tty injection, it attempts to preload the generated command into the next shell prompt instead of only printing it. In non-interactive contexts, or when tty injection is unavailable, it falls back to stdout.
+By default, `bit` prints the generated command to stdout. Staging a generated command into the current shell prompt is available only through sourced shell integration for Bash or Zsh.
 
 ## Features
 
@@ -75,7 +75,7 @@ bit find large log files in current directory
 bit show disk usage for home directory
 ```
 
-Force plain stdout output even in an interactive shell:
+Force plain stdout output explicitly:
 
 ```bash
 bit --print-only create folder new_folder
@@ -101,7 +101,7 @@ bit --help
 
 ## Shell Integration
 
-In a regular interactive terminal session, `bit` now tries to inject the generated command into the next prompt buffer directly. That depends on tty support for `TIOCSTI`, which may be unavailable or disabled on some systems. For environments where that mechanism is blocked, shell integration is also available through Bash and Zsh widgets.
+The standalone `bit` executable only prints commands. If you want generated commands staged into your current shell prompt so you can review and edit them before execution, source the appropriate shell integration.
 
 To enable that widget in Bash:
 
@@ -115,6 +115,14 @@ To enable that widget in Zsh:
 source <(bit --print-shell-integration zsh)
 ```
 
+After sourcing the Zsh integration, you can also invoke `bit` directly as a shell function:
+
+```bash
+bit create folder new_folder
+```
+
+That direct Zsh function call does not execute the generated command immediately. Instead, it stages the translated shell command into the next prompt so you can review or edit it before pressing Enter.
+
 Then type a natural-language instruction directly at the shell prompt and press `Ctrl-x Ctrl-b`. The widget will:
 
 1. Read the current command line buffer as the instruction.
@@ -124,6 +132,8 @@ Then type a natural-language instruction directly at the shell prompt and press 
 Nothing is executed automatically. You can edit the generated command and then press Enter yourself.
 
 To load this automatically, add the matching `source <(bit --print-shell-integration ...)` line to your shell startup file.
+
+In Zsh, sourcing the integration also defines a `bit` shell function that shadows the installed executable in that shell session. Administrative commands such as `bit --setup`, `bit --help`, `bit --print-only`, and `bit --print-shell-integration zsh` still pass through to the real CLI.
 
 ## Build
 
@@ -138,6 +148,5 @@ python -m build
 - The tool asks the model for a single shell command, but model output is still untrusted text.
 - `bit` rejects obvious malformed multi-line and fenced responses, but it does not prove a generated command is safe.
 - Review generated commands before executing them.
-- Direct prompt insertion relies on terminal input injection support and may be blocked by system policy.
-- If direct insertion is unavailable, use the Bash integration helper or `--print-only`.
+- Prompt staging is available through sourced shell integration rather than the standalone executable.
 - The default target is Linux shell syntax even if the tool is run elsewhere.

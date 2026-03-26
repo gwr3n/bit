@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
 authors = [
-  { name = "gwren" }
+  { name = "Roberto Rossi" }
 ]
 keywords = ["cli", "shell", "ollama", "linux", "translator"]
 classifiers = [

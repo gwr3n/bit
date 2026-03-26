@@ -93,12 +93,6 @@ bit find large log files in current directory
 bit show disk usage for home directory
 ```
 
-Force plain stdout output explicitly:
-
-```bash
-bit --print-only create folder new_folder
-```
-
 Print Bash integration helper:
 
 ```bash
@@ -151,7 +145,7 @@ Nothing is executed automatically. You can edit the generated command and then p
 
 To load this automatically, add the matching `source <(bit --print-shell-integration ...)` line to your shell startup file.
 
-In Zsh, sourcing the integration also defines a `bit` shell function that shadows the installed executable in that shell session. Administrative commands such as `bit --setup`, `bit --help`, `bit --print-only`, and `bit --print-shell-integration zsh` still pass through to the real CLI.
+In Zsh, sourcing the integration also defines a `bit` shell function that shadows the installed executable in that shell session. Administrative commands such as `bit --setup`, `bit --help`, and `bit --print-shell-integration zsh` still pass through to the real CLI.
 
 ## Build
 

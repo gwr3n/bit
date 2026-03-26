@@ -2,7 +2,7 @@ __bit_widget() {
   local generated
 
   [[ -n "$READLINE_LINE" ]] || return 0
-  generated="$(command bit --print-only "$READLINE_LINE")" || return $?
+  generated="$(command bit "$READLINE_LINE")" || return $?
   READLINE_LINE="$generated"
   READLINE_POINT=${#READLINE_LINE}
 }

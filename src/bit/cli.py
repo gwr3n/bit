@@ -66,11 +66,6 @@ def _build_parser() -> argparse.ArgumentParser:
         metavar="SHELL",
         help="print shell integration helper code for the selected shell",
     )
-    parser.add_argument(
-        "--print-only",
-        action="store_true",
-        help="always print the generated command to stdout instead of trying interactive prompt insertion",
-    )
     return parser
 
 

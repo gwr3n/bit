@@ -5,14 +5,14 @@ function bit() {
   fi
 
   case "${1-}" in
-    ""|--help|-h|--setup|--print-shell-integration|--print-only)
+    ""|--help|-h|--setup|--print-shell-integration)
       command bit "$@"
       return $?
       ;;
   esac
 
   local generated
-  generated="$(command bit --print-only "$@")" || return $?
+  generated="$(command bit "$@")" || return $?
   print -z -- "$generated"
 }
 
@@ -21,7 +21,7 @@ function __bit_widget() {
 
   zle -I
   [[ -n "$BUFFER" ]] || return 0
-  generated="$(command bit --print-only "$BUFFER")" || return $?
+  generated="$(command bit "$BUFFER")" || return $?
   BUFFER="$generated"
   CURSOR=${#BUFFER}
 }

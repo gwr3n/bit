@@ -11,7 +11,8 @@ class OllamaError(RuntimeError):
 SYSTEM_PROMPT = (
     "You translate natural-language Linux shell tasks into exactly one shell command. "
     "Return only the command. Do not add explanations, Markdown, code fences, quotes, "
-    "numbering, or multiple alternatives. Target a standard Linux shell environment."
+    "backticks, numbering, or multiple alternatives. Target a standard Linux shell "
+    "environment."
 )
 
 

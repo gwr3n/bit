@@ -1,5 +1,11 @@
 # bit
 
+[![Codecov](https://img.shields.io/codecov/c/gh/gwr3n/bit/main)](https://codecov.io/gh/gwr3n/bit) [![Python package](https://img.shields.io/github/actions/workflow/status/gwr3n/bit/.github%2Fworkflows%2Fpython-package.yml)](https://github.com/gwr3n/bit/actions/workflows/python-package.yml) [![Lint and type-check](https://img.shields.io/github/actions/workflow/status/gwr3n/bit/.github%2Fworkflows%2Flint-type.yml?branch=main&label=lint%20%2B%20type-check)](https://github.com/gwr3n/bit/actions/workflows/lint-type.yml) [![PyPI](https://img.shields.io/pypi/v/bit-cli)](https://pypi.org/project/bit-cli/) [![Python versions](https://img.shields.io/pypi/pyversions/bit-cli)](https://pypi.org/project/bit-cli/) [![License](https://img.shields.io/github/license/gwr3n/bit)](https://github.com/gwr3n/bit/blob/main/LICENSE) [![Downloads](https://static.pepy.tech/badge/bit-cli)](https://pepy.tech/project/bit-cli) [![Release](https://img.shields.io/github/v/release/gwr3n/bit)](https://github.com/gwr3n/bit/releases) [![Wheel](https://img.shields.io/pypi/wheel/bit-cli)](https://pypi.org/project/bit-cli/)
+
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000?logo=python)](https://github.com/psf/black) [![Ruff](https://img.shields.io/badge/lint-ruff-1f79ff?logo=python)](https://github.com/astral-sh/ruff) [![mypy](https://img.shields.io/badge/type--checked-mypy-blue?logo=python)](https://github.com/python/mypy)
+
+[![Issues](https://img.shields.io/github/issues/gwr3n/bit)](https://github.com/gwr3n/bit/issues) [![PRs](https://img.shields.io/github/issues-pr/gwr3n/bit)](https://github.com/gwr3n/bit/pulls) [![Stars](https://img.shields.io/github/stars/gwr3n/bit?style=social)](https://github.com/gwr3n/bit/stargazers) [![Docs](https://img.shields.io/badge/docs-site-blue)](https://github.com/gwr3n/bit)
+
 `bit` is a Python CLI that translates natural-language shell instructions into Linux shell commands by calling a locally running OLLAMA model.
 
 Example:

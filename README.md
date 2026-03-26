@@ -1,4 +1,4 @@
-# bit
+# bit - Bash Instruction Translator
 
 [![Codecov](https://img.shields.io/codecov/c/gh/gwr3n/bit/main)](https://codecov.io/gh/gwr3n/bit) [![Python package](https://img.shields.io/github/actions/workflow/status/gwr3n/bit/.github%2Fworkflows%2Fpython-package.yml)](https://github.com/gwr3n/bit/actions/workflows/python-package.yml) [![Lint and type-check](https://img.shields.io/github/actions/workflow/status/gwr3n/bit/.github%2Fworkflows%2Flint-type.yml?branch=main&label=lint%20%2B%20type-check)](https://github.com/gwr3n/bit/actions/workflows/lint-type.yml) 
 

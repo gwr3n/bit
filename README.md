@@ -31,7 +31,7 @@ Activate shell integration:
 
 ```zsh
 # zsh
-source <(bit --activate zsh)    # alternatively replace bash with bash
+source <(bit --activate zsh)    # alternatively replace zsh with bash
 ```
 
 This command can be added to your shell startup file (e.g. `.zshrc`) to load the integration automatically.

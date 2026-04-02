@@ -29,10 +29,12 @@ If you want `bit` to place the generated command into your current shell prompt 
 
 Activate shell integration:
 
-```bash
-# Bash
-source <(bit --activate bash)    # alternatively replace bash with zsh
+```zsh
+# zsh
+source <(bit --activate zsh)    # alternatively replace bash with bash
 ```
+
+This command can be added to your shell startup file (e.g. `.zshrc`) to load the integration automatically.
 
 Option 1 (using Ctrl-x Ctrl-b):
 ```

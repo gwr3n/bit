@@ -10,6 +10,8 @@
 
 `bit` is a Python CLI that translates natural-language shell instructions into Linux shell commands by calling a locally running OLLAMA model.
 
+![Demo](https://github.com/gwr3n/bit/raw/main/img/demo.gif)
+
 ## Quick Installation
 
 ```bash

@@ -8,7 +8,7 @@
 
 [![Issues](https://img.shields.io/github/issues/gwr3n/bit)](https://github.com/gwr3n/bit/issues) [![PRs](https://img.shields.io/github/issues-pr/gwr3n/bit)](https://github.com/gwr3n/bit/pulls) [![Stars](https://img.shields.io/github/stars/gwr3n/bit?style=social)](https://github.com/gwr3n/bit/stargazers) [![Docs](https://img.shields.io/badge/docs-site-blue)](https://github.com/gwr3n/bit)
 
-`bit` is a Python CLI that translates natural-language shell instructions into Linux shell commands by calling a locally running OLLAMA model.
+`bit` is a Python CLI that translates natural-language shell instructions into Linux shell commands by calling a locally running OLLAMA model. It leaves no footprint and requires no API keys.
 
 ![Demo](https://github.com/gwr3n/bit/raw/main/img/demo.gif)
 
